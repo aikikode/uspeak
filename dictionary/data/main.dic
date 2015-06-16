@@ -1,0 +1,107 @@
+<say,speak> (LINE words)
+  say "$words$"
+<type,write> (LINE words)
+  type "$words$\\r"
+undo
+  xType "keydown Control_L" "key z" "keyup Control_L"
+redo
+  xType "keydown Shift_L" "keydown Control_L" "key z" "keyup Shift_L" "keyup Control_L"
+cut
+  xType "keydown Control_L" "key x" "keyup Control_L"
+paste[ text]
+  xType "keydown Control_L" "key v" "keyup Control_L"
+copy[ text]
+  xType "keydown Control_L" "key c" "keyup Control_L"
+select all[ text]
+  xType "keydown Control_L" "key a" "keyup Control_L"
+
+go[ ]to (LINE site)
+  goto "$site$"
+  
+read[ this][ text]
+  read
+  
+<increase,raise> [my ][screen ]brightness
+  brightness set higher
+<decrease,lower> [my ][screen ]brightness
+  brightness set lower
+half brightness
+  brightness set half
+<full,max,highest,maximum> brightness
+  brightness set full
+<lowest,low,minimum,min> brightness
+  brightness set low
+  
+lock[ my][ computer]
+  result_from_call "gnome-screensaver-command -l" "false"
+  
+<open,show> [my ]<documents,files>[ folder]
+  open "xdg-open `xdg-user-dir DOCUMENTS`"
+<open,show> [my ]music[ folder]
+  open "xdg-open `xdg-user-dir MUSIC`"
+<open,show> [my ]home[ folder]
+  open "xdg-open `xdg-user-dir`"
+<open,show> [my ]videos[ folder]
+  open "xdg-open `xdg-user-dir VIDEOS`"
+<open,show> [my ]pictures[ folder]
+  open "xdg-open `xdg-user-dir PICTURES`"
+<open,show> [my ]downloads[ folder]
+  open "xdg-open `xdg-user-dir DOWNLOAD`"
+
+<search,google> (LINE question)
+  goto "http://www.google.com/search?q=$question$"
+<wolfram,wolf RAM>[ alpha] (LINE question)
+  goto "www.wolframalpha.com/input/?i=$question$"
+youtube (LINE video)
+  goto "https://www.youtube.com/results?search_query=$video$"
+
+where is (LINE place)
+  goto "https://maps.google.com/maps?q=$place$&hl=\$LANG"
+
+<open,launch>[ application] (LINE app)
+  program "$app$"
+  
+date
+  date date
+
+[<show,display,what[ is]>][ the][ ]date[is it][ <today,[right ]now>]
+  date date
+what is todays date
+  date date
+[show,display,what][ is][ the][ ]time[ ][is it][ ][today,[right ]now]
+  date time
+  
+[show,display,what,how][ is][ the][ ]weather[ ][is it,like][ ][today,[right ]now]
+  weather
+
+<whats,what is> my <ip,internet[ protocol]>[ address]
+  UserInformation ip
+<whats,what is> my name
+  UserInformation name
+  
+play (LINE song)
+  media "$song$"
+play[ <media,song,video>]
+  media play
+pause[ <media,song,video>]
+  media pause
+stop[ <media,song,video>]
+  media stop
+next[ <song,file,media,video>]
+  media next
+<previous,last>[ <song,file,media,video>]
+  media prev
+[volume ]mute[ volume]
+  media volume_mute
+<<increase,raise,more,higher> volume,volume <up,increase,higher,raise>>
+  media volume_up
+<<decrease,lower,less,down> volume,volume <decrease,lower,less,down>>
+  media volume_down
+[what[ is][ <the,this>] ]<current[ly],playing,song>[ playing][ song][ is <playing,on,this>][ right[ now]]
+  mediaAdv
+
+[start,enter,begin][ ]dictation mode
+  mode dictation
+  
+(LINE word)
+  wolf "$word$"
