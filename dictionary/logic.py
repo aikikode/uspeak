@@ -15,10 +15,12 @@ def read_dictionary(dictionary_file=DICTIONARY_FILE):
         regex = None
         for line in dictionary_f:
             line = line.rstrip('\n')
+            if line.startswith('#'):
+                continue
             is_regex = not line.startswith(' ')
             line = line.strip(' ')
             if is_regex:
-                regex = re.compile(line)
+                regex = re.compile(line, re.IGNORECASE)
             elif regex is not None:
                 regex_map[regex] = line
     return regex_map
@@ -27,7 +29,7 @@ def read_dictionary(dictionary_file=DICTIONARY_FILE):
 def translate(message, dictionary=None):
     if not dictionary:
         dictionary = read_dictionary()
-    text_sub = re.compile('\<{}\>'.format(TEXT_PATTERN))
+    text_sub = re.compile('\<{}\>'.format(TEXT_PATTERN), re.IGNORECASE)
     for regex, command in dictionary.items():
         match = regex.search(message)
         if match:

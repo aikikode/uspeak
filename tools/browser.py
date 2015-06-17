@@ -4,12 +4,14 @@
 from urllib.parse import urlparse, quote
 import webbrowser
 
+DEFAULT_URL = 'https://google.com'
+
 
 def run(*args):
-    url = ' '.join(map(str, args[0]))
+    url = ' '.join(map(str, args))
+    url = url or DEFAULT_URL
     if '.' not in url:
         url = '{}.com'.format(url)
-    url = quote(url, safe="/;%[]=:$())+,!?*@'~")
     if not urlparse(url).scheme:
         url = 'http://{}'.format(url)
     webbrowser.open(url)

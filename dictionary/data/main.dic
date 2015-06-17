@@ -1,4 +1,8 @@
-browser
+####################
+# Browser
+####################
+
+(browser|google)$
     browser
 
 go to (?P<text>\S+)
@@ -7,5 +11,28 @@ go to (?P<text>\S+)
 (search|google) (?P<text>.+)
     browser http://www.google.com/search?q=<text>
 
-(?P<text>(what|how|who|why|when|where|which|is|was|are|were) \S+(.*))
+(?P<text>(what|what's|how|who|whos|why|when|where|where's|which|is|was|are|were) \S+(.*))
     browser http://www.google.com/search?q=<text>
+
+
+###################
+# Playback
+###################
+
+^(loud|louder|(volume )?up)$
+    media volume 10%+
+
+^(low|(volume )?down)$
+    media volume 10%-
+
+^(volume )?(?P<text>(un)?mute)$
+    media volume <text>
+
+^next
+    media next
+
+^(latest|before|previous)
+    media prev
+
+^(stop|pause|play)$
+    media pause
