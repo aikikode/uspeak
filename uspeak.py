@@ -24,9 +24,10 @@ def main():
     notify.show(recognized_text)
 
     command = translate(recognized_text, dictionary=dictionary)
-    cmd = command.split()[0]
-    cmd_module = importlib.import_module('tools.{}'.format(cmd))
-    cmd_module.run(command.split()[1:])
+    if command:
+        cmd = command.split()[0]
+        cmd_module = importlib.import_module('tools.{}'.format(cmd))
+        cmd_module.run(command.split()[1:])
 
 
 if __name__ == '__main__':
