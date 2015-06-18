@@ -10,7 +10,7 @@ DICTIONARY_FILE = os.path.join(CUR_DUR, 'data', 'main.dic')
 
 
 def read_dictionary(dictionary_file=DICTIONARY_FILE):
-    regex_map = {}
+    regex_map = []
     with open(dictionary_file) as dictionary_f:
         regex = None
         for line in dictionary_f:
@@ -22,7 +22,7 @@ def read_dictionary(dictionary_file=DICTIONARY_FILE):
             if is_regex:
                 regex = re.compile(line, re.IGNORECASE)
             elif regex is not None:
-                regex_map[regex] = line
+                regex_map.append((regex, line, ))
     return regex_map
 
 
@@ -30,7 +30,7 @@ def translate(message, dictionary=None):
     if not dictionary:
         dictionary = read_dictionary()
     text_sub = re.compile('\<{}\>'.format(TEXT_PATTERN), re.IGNORECASE)
-    for regex, command in dictionary.items():
+    for regex, command in dictionary:
         match = regex.search(message)
         if match:
             try:

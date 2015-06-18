@@ -7,6 +7,7 @@ import speech_recognition as sr
 
 from dictionary.logic import read_dictionary, translate
 from notify import Notification, NOTIFY_TYPE, NOTIFY_LEVEL
+from tools import media
 
 
 def main():
@@ -14,8 +15,11 @@ def main():
     dictionary = read_dictionary()
     r = sr.Recognizer(language='en')
     with sr.Microphone() as source:
+        # Mute all sounds not to interfere with user input
+        media.volume('mute')
         notify.show('Waiting for voice command...', NOTIFY_TYPE.LISTEN, NOTIFY_LEVEL.CRITICAL)
         audio = r.listen(source)
+    media.volume('unmute')
     notify.show('Processing...', NOTIFY_TYPE.WAIT, NOTIFY_LEVEL.CRITICAL)
     try:
         recognized_text = r.recognize(audio)

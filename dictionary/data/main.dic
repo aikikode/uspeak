@@ -5,7 +5,7 @@
 (browser|google)$
     browser
 
-go to (?P<text>\S+)
+go( to)? (?P<text>\S+)
     browser <text>
 
 (search|google) (?P<text>.+)
