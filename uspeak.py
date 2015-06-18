@@ -18,8 +18,13 @@ def main():
         # Mute all sounds not to interfere with user input
         media.volume('mute')
         notify.show('Waiting for voice command...', NOTIFY_TYPE.LISTEN, NOTIFY_LEVEL.CRITICAL)
-        audio = r.listen(source)
-    media.volume('unmute')
+        try:
+            audio = r.listen(source, timeout=3)
+        except TimeoutError:
+            notify.hide()
+            return
+        finally:
+            media.volume('unmute')
     notify.show('Processing...', NOTIFY_TYPE.WAIT, NOTIFY_LEVEL.CRITICAL)
     try:
         recognized_text = r.recognize(audio)
