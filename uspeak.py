@@ -16,7 +16,12 @@ def main():
     r = sr.Recognizer(language='en')
     with sr.Microphone() as source:
         # Mute all sounds not to interfere with user input
-        media.volume('mute')
+        # Check if muted
+        if not media.is_muted():
+            media.volume('mute')
+            turn_on_sounds = True
+        else:
+            turn_on_sounds = False
         notify.show('Waiting for voice command...', NOTIFY_TYPE.LISTEN, NOTIFY_LEVEL.CRITICAL)
         try:
             audio = r.listen(source, timeout=3)
@@ -24,7 +29,8 @@ def main():
             notify.hide()
             return
         finally:
-            media.volume('unmute')
+            if turn_on_sounds:
+                media.volume('unmute')
     notify.show('Processing...', NOTIFY_TYPE.WAIT, NOTIFY_LEVEL.CRITICAL)
     try:
         recognized_text = r.recognize(audio)

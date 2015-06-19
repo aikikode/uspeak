@@ -10,6 +10,15 @@ def volume(delta, *args):
     return 1
 
 
+def is_muted():
+    try:
+        return subprocess.check_output(
+            'amixer -D pulse sget Master 1+ | egrep -c -m 1 "\[off\]"', shell=True
+        ).strip() == b'1'
+    except:
+        return False
+
+
 command_to_method = {
     'volume': volume,
     'next': lambda *args: subprocess.call("xte 'keydown XF86AudioNext' 'keyup XF86AudioNext'", shell=True),
