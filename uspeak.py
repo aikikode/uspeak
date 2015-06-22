@@ -10,10 +10,10 @@ from notify import Notification, NOTIFY_TYPE, NOTIFY_LEVEL
 from tools import media
 
 
-def main():
+def uspeak(lang):
     notify = Notification('USpeak')
     dictionary = read_dictionary()
-    r = sr.Recognizer(language='en')
+    r = sr.Recognizer(language=lang)
     with sr.Microphone() as source:
         # Mute all sounds not to interfere with user input
         # Check if muted
@@ -50,4 +50,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description='USpeak.')
+    parser.add_argument('--lang', type=str, default='en', help='language to use for commands (default: en)')
+    args = parser.parse_args()
+    uspeak(args.lang)
