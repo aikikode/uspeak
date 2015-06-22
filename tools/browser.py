@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from urllib.parse import urlparse, quote
+from urllib.parse import urlparse
 import webbrowser
 
 DEFAULT_URL = 'https://google.com'

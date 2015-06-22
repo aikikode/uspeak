@@ -7,16 +7,14 @@ import speech_recognition as sr
 
 from dictionary import read_dictionary, translate
 from notify import Notification, NOTIFY_TYPE, NOTIFY_LEVEL
-from tools.media import reduce_volume
+from tools.media import reduced_volume
 
 
 def uspeak(lang):
     notify = Notification('USpeak')
     r = sr.Recognizer(language=lang)
     with sr.Microphone() as source:
-        # Mute all sounds not to interfere with user input
-        # Check if muted
-        with reduce_volume():
+        with reduced_volume():
             notify.show('Waiting for voice command...', NOTIFY_TYPE.LISTEN, NOTIFY_LEVEL.CRITICAL)
             try:
                 audio = r.listen(source, timeout=3)

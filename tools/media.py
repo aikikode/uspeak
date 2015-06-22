@@ -28,17 +28,18 @@ def get_volume():
         return None
 
 
-class reduce_volume():
+class reduced_volume():
     def __init__(self):
         self.was_muted = False
         self.initial_volume = 100
         self.reduction_level = 3
 
-    def __enter__(self):
+    def __enter__(self, factor=None):
         if is_muted():
             self.was_muted = True
         else:
             self.initial_volume = get_volume()
+            self.reduction_level = factor or self.reduction_level
             if self.initial_volume:
                 set_volume('{}%'.format(self.initial_volume // self.reduction_level))
 

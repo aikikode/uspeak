@@ -36,3 +36,11 @@ go( to)? (?P<text>\S+)
 
 ^(stop|pause|play)$
     media pause
+
+
+###################
+# Text
+###################
+
+^type (?P<text>.+)
+    type <text>
