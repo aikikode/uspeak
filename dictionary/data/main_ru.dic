@@ -1,0 +1,44 @@
+####################
+# Browser
+####################
+
+(браузер|google)$
+    browser
+
+открыть (?P<text>\S+)
+    browser <text>
+
+(искать|google|ищи|найти|найди) (?P<text>.+)
+    browser http://www.google.com/search?q=<text>
+
+(?P<text>(что|кто|кого|чего|кому|чему|кем|(о )?чем|(o )?ком|чей|когда|почему|где|какой|который) \S+(.*))
+    browser http://www.google.com/search?q=<text>
+
+(?P<text>(.* )?погода( .*)?)
+    browser http://www.google.com/search?q=<text>
+
+
+###################
+# Playback
+###################
+
+^(громче|прибавить( звук)?)$
+    media volume 10%+
+
+^(тише|убавить( звук)?)$
+    media volume 10%-
+
+^(тихо|убрать звук)$
+    media volume mute
+
+^(громко|вернуть звук)$
+    media volume unmute
+
+^следующ(\w)+( серия)?$
+    media next
+
+^предыдущ(\w)+( серия)?$
+    media prev
+
+^(стоп|пауза|останови|продолжи)$
+    media pause
