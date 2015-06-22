@@ -32,7 +32,7 @@ class reduced_volume():
     def __init__(self):
         self.was_muted = False
         self.initial_volume = 100
-        self.reduction_level = 3
+        self.reduction_level = 2
 
     def __enter__(self, factor=None):
         if is_muted():
