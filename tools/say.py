@@ -4,10 +4,10 @@
 try:
     from espeak import espeak
 
-    def run(*args):
+    def run(*args, **kwargs):
         text = ' '.join(map(str, args))
         espeak.synth(text)
 
 except ImportError:
-    def run(*args):
+    def run(*args, **kwargs):
         pass

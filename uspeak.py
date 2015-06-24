@@ -34,7 +34,7 @@ def uspeak(lang):
         notify.show(recognized_text)
         cmd = command.split()[0]
         cmd_module = importlib.import_module('tools.{}'.format(cmd))
-        if cmd_module.run(*command.split()[1:]):
+        if cmd_module.run(*command.split()[1:], lang=lang):
             notify.show('Sorry, there were some problems running your command.', notify_type=NOTIFY_TYPE.WAIT)
     else:
         notify.show('Unknown command: {}'.format(recognized_text))

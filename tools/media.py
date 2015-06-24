@@ -57,7 +57,7 @@ command_to_method = {
 }
 
 
-def run(*args):
+def run(*args, **kwargs):
     try:
         media_action = command_to_method.get(args[0])
         return media_action(*args[1:])

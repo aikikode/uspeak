@@ -6,7 +6,7 @@ from gi.repository import Gdk
 import subprocess
 
 
-def run(*args):
+def run(*args, **kwargs):
     text = ' '.join(map(str, args))
     cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
     cb.set_text(text, -1)
