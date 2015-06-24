@@ -27,27 +27,36 @@ class Capture(object):
         self.thresholded = pygame.surface.Surface(self.size, 0, self.display)
         self.previous_pixels = None
 
+    def rgb2gray(self, rgb):
+        return np.dot(rgb[..., :3], [0.299, 0.587, 0.144])
+
     def get_and_flip(self):
         # if you don't want to tie the framerate to the camera, you can check
         # if the camera has an image ready.  note that while this works
         # on most cameras, some will never return true.
         if self.cam.query_image():
             self.snapshot = self.cam.get_image(self.snapshot)
-            pixels = pygame.surfarray.array3d(self.snapshot).astype(np.int)  # np.int to make it signed
+            pixels = pygame.surfarray.array2d(self.snapshot).astype(np.int)  # np.int to make it signed
             if self.previous_pixels is not None:
                 # Get image difference
-                p = np.subtract(pixels, self.previous_pixels)
+                edges = np.absolute(np.subtract(pixels, self.previous_pixels))
                 # Reset all pixels below threshold
-                threshold = 30
-                bool_matrix = np.logical_and(p < threshold, p > -threshold)
-                p[bool_matrix] = 0
-                # p[np.invert(bool_matrix)] = 200
+                threshold = 40
+                bool_matrix = edges  < threshold
+                edges[bool_matrix] = 0
+                edges[np.invert(bool_matrix)] = 255
+                # p[:, :, :] = p.max(2, keepdims=True)  # RGB to Grayscale for display (result: also 3d array)
+
+                # Get detected lines
+                # h, theta, d = hough_line(p)
+                # lines = probabilistic_hough_line(edges, threshold=10, line_length=100, line_gap=1, theta=np.array([-3.14 * 2 // 3, 3.14 * 2 // 3]))
+
                 # Show differential image
-                self.snapshot = pygame.surfarray.make_surface(p)
+                self.snapshot = pygame.surfarray.make_surface(edges)
             self.previous_pixels = pixels
 
         # blit it to the display surface.  simple!
-        self.display.blit(self.snapshot, (0,0))
+        self.display.blit(self.snapshot, (0, 0))
         pygame.display.flip()
 
     def main(self):
