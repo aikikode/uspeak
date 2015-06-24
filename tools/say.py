@@ -7,7 +7,8 @@ except ImportError:
     class espeak():
         @classmethod
         def synth(*args):
-            pass
+            print('Cannot generate speech. Please, install python3-espeak module.')
+            return 1
 
 
 def run(*args, **kwargs):

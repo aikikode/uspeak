@@ -44,8 +44,18 @@ def uspeak(lang, use_sounds):
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='USpeak.')
-    parser.add_argument('--lang', '-l', type=str, default='en', help='language to use for commands (default: en)')
-    parser.add_argument('--sounds', '-s', action='store_true', help='emit voice notifications')
+    parser = argparse.ArgumentParser(description='USpeak')
+    parser.add_argument('--lang', '-l', type=str, default='en', help='language that you speak (default: en)')
+    parser.add_argument(
+        '--sounds', '-s', action='store_true',
+        help='use computer voice that tells you when the program is ready to listen to your commands'
+    )
+    parser.add_argument(
+        '--continuous', '-c', action='store_true',
+        help='run continuously waiting for voice input triggered by loud sound'
+    )
     args = parser.parse_args()
-    LoudSoundTrigger(uspeak, args.lang, args.sounds).run_and_wait(single_run=False)
+    if args.continuous:
+        LoudSoundTrigger(uspeak, args.lang, args.sounds).run_and_wait(single_run=False)
+    else:
+        uspeak(args.lang, args.sounds)
