@@ -51,9 +51,9 @@ class reduced_volume():
 
 command_to_method = {
     'volume': set_volume,
-    'next': lambda *args: subprocess.call("xte 'keydown XF86AudioNext' 'keyup XF86AudioNext'", shell=True),
-    'prev': lambda *args: subprocess.call("xte 'keydown XF86AudioPrev' 'keyup XF86AudioPrev'", shell=True),
-    'pause': lambda *args: subprocess.call("xte 'keydown XF86AudioPlay' 'keyup XF86AudioPlay'", shell=True),
+    'next': lambda *args: subprocess.call("xte 'key XF86AudioNext'", shell=True),
+    'prev': lambda *args: subprocess.call("xte 'key XF86AudioPrev'", shell=True),
+    'pause': lambda *args: subprocess.call("xte 'key XF86AudioPlay'", shell=True),
 }
 
 
