@@ -5,17 +5,17 @@
 (браузер|google)$
     browser
 
-^(открыть|открой) (?P<text>\S+)
+^(открыть|открой) (?P<text>\S+(.*))
     browser <text>
 
 (искать|google|ищи|най(ти|ди)|узна(й|ть)) (?P<text>.+)
-    browser http://www.google.com/search?q=<text>
+    browser https://www.google.com/search?q=<text>
 
 (?P<text>(что|кто|кого|чего|кому|чему|кем|(о |за( )?)?чем|(o )?ком|чей|когда|почему|где|какой|который) \S+(.*))
-    browser http://www.google.com/search?q=<text>
+    browser https://www.google.com/search?q=<text>
 
-(?P<text>(.* )?погода( .*)?)
-    browser http://www.google.com/search?q=<text>
+(?P<text>(.* )?погод.( .*)?)
+    browser https://www.google.com/search?q=<text>
 
 
 ###################
@@ -40,7 +40,7 @@
 ^предыдущ(\w)+( серия)?$
     media prev
 
-^(стоп|пауза|останови(ть)?|продолжи(ть)?)$
+^(сто(п|й)|пауза|останови(ть)?|продолжи(ть)?)$
     media pause
 
 

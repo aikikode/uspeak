@@ -5,14 +5,17 @@
 (browser|google)$
     browser
 
-go( to)? (?P<text>\S+)
+go( to)? (?P<text>\S+(.*))
     browser <text>
 
 (search|google) (?P<text>.+)
-    browser http://www.google.com/search?q=<text>
+    browser https://www.google.com/search?q=<text>
 
 (?P<text>(what|what's|how|who|whos|why|when|where|where's|which|is|was|are|were) \S+(.*))
-    browser http://www.google.com/search?q=<text>
+    browser https://www.google.com/search?q=<text>
+
+(?P<text>(.* )?weather( .*)?)
+    browser https://www.google.com/search?q=<text>
 
 
 ###################

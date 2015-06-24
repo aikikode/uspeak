@@ -3,19 +3,21 @@
 
 import importlib
 
-import speech_recognition as sr
-
 from dictionary import read_dictionary, translate
 from notify import Notification, NOTIFY_TYPE, NOTIFY_LEVEL
+import speech_recognition as sr
+from tools import say
 from tools.media import reduced_volume
 from triggers import LoudSoundTrigger
 
 
-def uspeak(lang):
+def uspeak(lang, use_sounds):
     notify = Notification('USpeak')
     r = sr.Recognizer(language=lang)
     with sr.Microphone() as source:
         with reduced_volume():
+            if use_sounds:
+                say.run('go')
             notify.show('Waiting for voice command...', NOTIFY_TYPE.LISTEN, NOTIFY_LEVEL.CRITICAL)
             try:
                 audio = r.listen(source, timeout=3)
@@ -44,5 +46,6 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description='USpeak.')
     parser.add_argument('--lang', '-l', type=str, default='en', help='language to use for commands (default: en)')
+    parser.add_argument('--sounds', '-s', action='store_true', help='emit voice notifications')
     args = parser.parse_args()
-    LoudSoundTrigger(uspeak, args.lang).run_and_wait(single_run=False)
+    LoudSoundTrigger(uspeak, args.lang, args.sounds).run_and_wait(single_run=False)

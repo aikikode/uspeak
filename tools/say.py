@@ -3,11 +3,13 @@
 
 try:
     from espeak import espeak
-
-    def run(*args, **kwargs):
-        text = ' '.join(map(str, args))
-        espeak.synth(text)
-
 except ImportError:
-    def run(*args, **kwargs):
-        pass
+    class espeak():
+        @classmethod
+        def synth(*args):
+            pass
+
+
+def run(*args, **kwargs):
+    text = ' '.join(map(str, args))
+    espeak.synth(text)
