@@ -5,7 +5,7 @@
 (браузер|google)$
     browser
 
-открыть (?P<text>\S+)
+^(открыть|открой) (?P<text>\S+)
     browser <text>
 
 (искать|google|ищи|най(ти|ди)|узна(й|ть)) (?P<text>.+)
