@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import audioop
+import time
+
 import pyaudio
 
 
@@ -25,7 +27,8 @@ class LoudSoundTrigger:
             rms = audioop.rms(stream.read(self.chunk), 2)
             if rms > self.threshold:
                 stream.close()
+                time.sleep(0.2)
                 self.callback(*self.args)
                 break
         if not single_run:
-            self.run_and_wait()
+            self.run_and_wait(single_run)
