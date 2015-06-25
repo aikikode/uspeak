@@ -2,16 +2,16 @@
 # Browser
 ####################
 
-(browser|google)$
+^(browser|google)$
     browser
 
-go( to)? (?P<text>\S+(.*))
+^(go( to)?|open) (?P<text>\S+(.*))
     browser <text>
 
-(search|google) (?P<text>.+)
+^(search|google) (?P<text>.+)
     browser https://www.google.com/search?q=<text>
 
-(?P<text>(what|what's|how|who|whos|why|when|where|where's|which|is|was|are|were) \S+(.*))
+^(?P<text>(what|what's|how|who|whos|why|when|where|where's|which|is|was|are|were) \S+(.*))
     browser https://www.google.com/search?q=<text>
 
 (?P<text>(.* )?weather( .*)?)
@@ -19,7 +19,7 @@ go( to)? (?P<text>\S+(.*))
 
 
 ###################
-# Playback
+# Media
 ###################
 
 ^(loud|louder|(volume )?up)$

@@ -7,6 +7,12 @@ import re
 TEXT_PATTERN = 'text'
 CUR_DUR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = os.path.join(CUR_DUR, 'data')
+COMMANDS_FILE = os.path.join(DATA_DIR, 'COMMANDS')
+
+
+def show_commands():
+    with open(COMMANDS_FILE, 'r') as cfile:
+        print(cfile.read())
 
 
 def get_dictionary_file_by_lang(language):

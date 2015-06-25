@@ -50,8 +50,40 @@ Usually you'll want to run the tool two ways:
      ./uspeak.py --lang=en --continuous
 
    Almost the same, but the tool will run continuously and be triggered each time you produce some load noise: say something, clap your hands, tap the mic, etc. After that it will wait a couple of seconds for your command, execute it and continue waiting for next trigger event.
-   
+
    You'd better setup your microphone volume to comfortable level then. If the tool is triggered too often, decrease the volume. And vice a versa.
+
+Available commands (en)
+-----------------------
+Browser
+#######
+Open website: 'open' or 'go (to)' <site address or site name>, e.g. 'open youtube'
+
+Search Google: 'search' or 'google' <text to search> or just ask any question
+
+Media
+#####
+Insrease volume: 'louder' or 'volume up'
+
+Decrease volume: 'volume down'
+
+Mute all sounds: 'mute'
+
+Unmute all sounds: 'unmute'
+
+Play next song/video in queue: 'next'
+
+Play previous song/video in queue: 'latest' or 'previous'
+
+Pause/unpause: 'pause' or 'play'
+
+Text
+####
+Type text: 'type' <text>
+
+Other
+#####
+For complete list of commands and their variations look dictionary files, e.g. for English `dictionary/data/main_en.dic <https://github.com/aikikode/uspeak/blob/develop/dictionary/data/main_en.dic>`__ (you should be familiar with regular expressions)
 
 About
 -----

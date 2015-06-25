@@ -3,7 +3,7 @@
 
 import importlib
 
-from dictionary import read_dictionary, translate
+from dictionary import read_dictionary, translate, show_commands
 from notify import Notification, NOTIFY_TYPE, NOTIFY_LEVEL
 import speech_recognition as sr
 from tools import say
@@ -54,8 +54,11 @@ if __name__ == '__main__':
         '--continuous', '-c', action='store_true',
         help='run continuously waiting for voice input triggered by loud sound'
     )
+    parser.add_argument('--list-commands', action='store_true', help='List available voice commands')
     args = parser.parse_args()
-    if args.continuous:
+    if args.list_commands:
+        show_commands()
+    elif args.continuous:
         LoudSoundTrigger(uspeak, args.lang, args.sounds).run_and_wait(single_run=False)
     else:
         uspeak(args.lang, args.sounds)
