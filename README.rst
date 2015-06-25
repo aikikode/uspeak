@@ -13,8 +13,15 @@ Requirements
 Install the following packages if you want to have the corresonding functionality:
 
 - python3 *(must-have, usually already present)*
+- python3-pyaudio *(also must-have)*
 - xautomation *(to control media and type text with your voice)*
 - python3-espeak *(to receive computer voice notifications)*
+
+To install all requirements on Ubuntu:
+
+.. code:: bash
+
+  sudo apt-get install xautomation python3 python3-pyaudio python3-espeak
 
 Installation
 ------------
@@ -88,3 +95,4 @@ For complete list of commands and their variations look dictionary files, e.g. f
 About
 -----
 - Based on `LiSpeak <https://github.com/BmanDesignsCanada/LiSpeak>`__
+
