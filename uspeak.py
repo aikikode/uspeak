@@ -44,7 +44,7 @@ def uspeak(lang, use_sounds):
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='USpeak')
+    parser = argparse.ArgumentParser(description='USpeak: control PC with your voice')
     parser.add_argument('--lang', '-l', type=str, default='en', help='language that you speak (default: en)')
     parser.add_argument(
         '--sounds', '-s', action='store_true',
