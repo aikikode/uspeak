@@ -285,10 +285,11 @@ class Recognizer(AudioSource):
             self.quiet_duration / seconds_per_buffer))  # maximum number of buffers of quiet audio to retain before and after
         elapsed_time = 0
 
-        # store audio input until the phrase starts
+        # Set initial threshold to current noise level
         self.energy_threshold = self.dynamic_energy_ratio * audioop.rms(
             source.stream.read(source.CHUNK), source.SAMPLE_WIDTH
         )
+        # store audio input until the phrase starts
         while True:
             elapsed_time += seconds_per_buffer
             if timeout and elapsed_time > timeout:  # handle timeout if specified
