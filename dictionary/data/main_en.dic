@@ -1,4 +1,27 @@
 ####################
+# Programs
+####################
+
+# Folders
+#-------------------
+^open (my )?video(s)?( folder| directory)?$
+    open ~/Videos
+
+^open (my )?music( folder| directory)?$
+    open ~/Music
+
+^open (my )?downloads( folder| directory)?$
+    open ~/Downloads
+
+^open (my )?documents( folder| directory)?$
+    open ~/Documents
+
+^open (my )?dropbox( folder| directory)?$
+    open ~/Dropbox
+
+################################################################################
+
+####################
 # Browser
 ####################
 

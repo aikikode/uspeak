@@ -8,19 +8,19 @@ import os
 
 IMG_DIR = 'ico'
 MIC = 'mic.png'
-LISTEN = 'listen.png'
-WAIT = 'wait.png'
+OK = 'ok.png'
+ERROR = 'error.png'
 
 CUR_DUR = os.path.dirname(os.path.realpath(__file__))
-LISTEN_ICON = os.path.join(CUR_DUR, IMG_DIR, LISTEN)
+OK_ICON = os.path.join(CUR_DUR, IMG_DIR, OK)
 MIC_ICON = os.path.join(CUR_DUR, IMG_DIR, MIC)
-WAIT_ICON = os.path.join(CUR_DUR, IMG_DIR, WAIT)
+ERROR_ICON = os.path.join(CUR_DUR, IMG_DIR, ERROR)
 
 
 class NOTIFY_TYPE(Enum):
-    LISTEN = 0
+    OK = 0
     MIC = 1
-    WAIT = 2
+    ERROR = 2
 
 
 class NOTIFY_LEVEL():
@@ -30,9 +30,9 @@ class NOTIFY_LEVEL():
 
 
 notify_type_to_ico_map = {
-    NOTIFY_TYPE.LISTEN: LISTEN_ICON,
+    NOTIFY_TYPE.OK: OK_ICON,
     NOTIFY_TYPE.MIC: MIC_ICON,
-    NOTIFY_TYPE.WAIT: WAIT_ICON,
+    NOTIFY_TYPE.ERROR: ERROR_ICON,
 }
 
 
@@ -42,7 +42,9 @@ class Notification(object):
         self.notify = None
         Notify.init(self.app_name)
 
-    def show(self, message, notify_type=NOTIFY_TYPE.MIC, notify_level=NOTIFY_LEVEL.NORMAL, timeout=3):
+    def show(
+        self, message, notify_type=NOTIFY_TYPE.MIC, notify_level=NOTIFY_LEVEL.NORMAL, timeout=4000
+    ):
         icon = notify_type_to_ico_map.get(notify_type)
         if self.notify:
             self.notify.props.body = message
