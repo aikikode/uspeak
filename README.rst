@@ -3,7 +3,7 @@ USpeak - control PC with your voice
 
 Linux software to perform different operations using voice control:
 
-- open websites
+- open folders and websites
 - search google
 - control music and video playback: pause, mute, etc.
 - type text
@@ -104,7 +104,7 @@ Type text: 'type' <text>
 
 Other
 #####
-For complete list of commands and their variations look dictionary files, e.g. for English `dictionary/data/main_en.dic <https://github.com/aikikode/uspeak/blob/develop/dictionary/data/main_en.dic>`__ (you should be familiar with regular expressions)
+For complete list of commands and their variations look at dictionary files, e.g. for English: `dictionary/data/main_en.dic <https://github.com/aikikode/uspeak/blob/develop/dictionary/data/main_en.dic>`__ (you should be familiar with regular expressions)
 
 About
 -----
