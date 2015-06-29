@@ -1,3 +1,11 @@
+Folders
+####################
+Open ~/Documents: 'open documents'
+Open ~/Downloads: 'open downloads'
+Open ~/Dropbox: 'open dropbox'
+Open ~/Music: 'open music'
+Open ~/Videos: 'open videos'
+
 Browser
 ####################
 Open website: 'go ( to)' or 'open' <site address or site name>, e.g. 'open youtube'

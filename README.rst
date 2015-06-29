@@ -5,12 +5,12 @@ Linux software to perform different operations using voice control:
 
 - open websites
 - search google
-- control music and video playbak: pause, mute, etc.
+- control music and video playback: pause, mute, etc.
 - type text
 
 Requirements
 ------------
-Install the following packages if you want to have the corresonding functionality:
+Install the following packages if you want to have the corresponding functionality:
 
 - python3 *(must-have, usually already present)*
 - python3-pyaudio *(also must-have)*
@@ -62,6 +62,20 @@ Usually you'll want to run the tool two ways:
 
 Available commands (en)
 -----------------------
+
+Folders
+#######
+
+Open ~/Documents: 'open documents'
+
+Open ~/Downloads: 'open downloads'
+
+Open ~/Dropbox: 'open dropbox'
+
+Open ~/Music: 'open music'
+
+Open ~/Videos: 'open videos'
+
 Browser
 #######
 Open website: 'open' or 'go (to)' <site address or site name>, e.g. 'open youtube'
