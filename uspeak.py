@@ -11,6 +11,17 @@ from tools.media import reduced_volume
 from triggers import LoudSoundTrigger
 
 
+def run_command(command, lang):
+    cmd = command.split()[0]
+    module_name = 'tools.{}'.format(cmd)
+    try:
+        cmd_module = importlib.import_module(module_name)
+    except ImportError:
+        print('ERROR: module {} not found'.format(module_name))
+        return 1
+    return cmd_module.run(*command.split()[1:], lang=lang)
+
+
 def uspeak(lang, use_sounds):
     notify = Notification('USpeak')
     r = sr.Recognizer(language=lang)
@@ -33,13 +44,8 @@ def uspeak(lang, use_sounds):
 
     command = translate(recognized_text, dictionary=read_dictionary(language=lang))
     if command:
-        cmd = command.split()[0]
-        cmd_module = importlib.import_module('tools.{}'.format(cmd))
-        notify.show(
-            'Executing: {}.\nReady for another command.'.format(command),
-            notify_type=NOTIFY_TYPE.OK
-        )
-        if cmd_module.run(*command.split()[1:], lang=lang):
+        notify.show('Executing: {}.\nReady for another command.'.format(command), notify_type=NOTIFY_TYPE.OK)
+        if run_command(command, lang, notify):
             notify.show('Sorry, there were some problems running your command.', notify_type=NOTIFY_TYPE.ERROR)
     else:
         notify.show('Unknown command: {}'.format(recognized_text), notify_type=NOTIFY_TYPE.ERROR)
@@ -58,9 +64,16 @@ if __name__ == '__main__':
         help='run continuously waiting for voice input triggered by loud sound'
     )
     parser.add_argument('--list-commands', action='store_true', help='List available voice commands')
+    parser.add_argument(
+        '--trigger', '-t', type=str,
+        help='ADVANCED: provide command to execute if sound level exceeds the limit. See available commands format in'
+             ' dict files: dictionary/data/*.dic'
+    )
     args = parser.parse_args()
     if args.list_commands:
         show_commands()
+    elif args.trigger:
+        LoudSoundTrigger(run_command, args.trigger, args.lang).run_and_wait(single_run=not args.continuous)
     elif args.continuous:
         LoudSoundTrigger(uspeak, args.lang, args.sounds).run_and_wait(single_run=False)
     else:
