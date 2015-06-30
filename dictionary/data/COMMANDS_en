@@ -8,8 +8,8 @@ Open ~/Videos: 'open videos'
 
 Browser
 ####################
-Open website: 'go ( to)' or 'open' <site address or site name>, e.g. 'open youtube'
-Search Google: 'search' or 'google' <text to search> or just ask any question
+Open website: 'go ( to) ...' or 'open ...', e.g. 'open youtube'
+Search Google: 'search ...' or 'google ...' or just ask any question
 
 Media
 ###################
@@ -23,4 +23,4 @@ Pause/unpause: 'pause' or 'play'
 
 Text
 ###################
-Type text: 'type' <text>
+Type text: 'type ...'

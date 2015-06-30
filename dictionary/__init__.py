@@ -7,12 +7,21 @@ import re
 TEXT_PATTERN = 'text'
 CUR_DUR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = os.path.join(CUR_DUR, 'data')
-COMMANDS_FILE = os.path.join(DATA_DIR, 'COMMANDS')
+COMMANDS_DESCRIPTION_FILE_PREFIX = os.path.join(DATA_DIR, 'COMMANDS')
 
 
-def show_commands():
-    with open(COMMANDS_FILE, 'r') as cfile:
-        print(cfile.read())
+def show_commands(lang):
+    commands_file = '{}_{}'.format(COMMANDS_DESCRIPTION_FILE_PREFIX, lang)
+    try:
+        with open(commands_file, 'r') as cfile:
+            print(cfile.read())
+    except FileNotFoundError:
+        print(
+            'ERROR: no commands description file for {0} language.\n'
+            'Looks like you added {0} support by yourself. If so, create {1} file for it to display.'.format(
+                lang, commands_file
+            )
+        )
 
 
 def get_dictionary_file_by_lang(language):

@@ -106,6 +106,14 @@ Other
 #####
 For complete list of commands and their variations look at dictionary files, e.g. for English: `dictionary/data/main_en.dic <https://github.com/aikikode/uspeak/blob/develop/dictionary/data/main_en.dic>`__ (you should be familiar with regular expressions)
 
+Other Languages
+###############
+For help on commands in Russian run:
+
+.. code:: bash
+
+  ./uspeak.py --lang=ru --list-commands
+
 About
 -----
 - Based on `LiSpeak <https://github.com/BmanDesignsCanada/LiSpeak>`__

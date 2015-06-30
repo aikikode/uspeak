@@ -71,7 +71,7 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
     if args.list_commands:
-        show_commands()
+        show_commands(args.lang)
     elif args.trigger:
         LoudSoundTrigger(run_command, args.trigger, args.lang).run_and_wait(single_run=not args.continuous)
     elif args.continuous:
