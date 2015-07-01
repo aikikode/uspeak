@@ -45,7 +45,7 @@ def uspeak(lang, use_sounds):
     command = translate(recognized_text, dictionary=read_dictionary(language=lang))
     if command:
         notify.show('Executing: {}.\nReady for another command.'.format(command), notify_type=NOTIFY_TYPE.OK)
-        if run_command(command, lang, notify):
+        if run_command(command, lang):
             notify.show('Sorry, there were some problems running your command.', notify_type=NOTIFY_TYPE.ERROR)
     else:
         notify.show('Unknown command: {}'.format(recognized_text), notify_type=NOTIFY_TYPE.ERROR)
